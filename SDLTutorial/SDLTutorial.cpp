@@ -80,9 +80,20 @@ int main(int argc, char* args[])
 		}
 		else
 		{
-			SDL_BlitSurface(gHelloWorld, NULL, gScreenSurface, NULL);
-			SDL_UpdateWindowSurface(gWindow);
-			SDL_Event e; bool quit = false; while (quit == false) { while (SDL_PollEvent(&e)) { if (e.type == SDL_QUIT) quit = true; } }
+			bool quit = false;
+			SDL_Event e;
+
+			while (!quit) {
+				while (SDL_PollEvent(&e) != 0)
+				{
+					if (e.type == SDL_QUIT)
+					{
+						quit = true;
+					}
+				}
+				SDL_BlitSurface(gHelloWorld, NULL, gScreenSurface, NULL);
+				SDL_UpdateWindowSurface(gWindow);
+			}
 		}
 	}
 
